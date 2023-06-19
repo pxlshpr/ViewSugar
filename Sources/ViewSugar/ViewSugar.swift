@@ -17,10 +17,6 @@ public extension View {
 
 public extension View {
     
-    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
-    }
-
     func readSize(onChange: @escaping (CGSize) -> Void) -> some View {
         background(
             GeometryReader { geometryProxy in
@@ -52,6 +48,13 @@ private struct InsetsPreferenceKey: PreferenceKey {
     static func reduce(value: inout EdgeInsets, nextValue: () -> EdgeInsets) {}
 }
 
+#if os(iOS)
+public extension View {
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape( RoundedCorner(radius: radius, corners: corners) )
+    }
+}
+
 struct RoundedCorner: Shape {
 
     var radius: CGFloat = .infinity
@@ -62,3 +65,4 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
+#endif

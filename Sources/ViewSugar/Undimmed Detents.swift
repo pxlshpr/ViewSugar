@@ -1,3 +1,5 @@
+#if os(iOS)
+
 import SwiftUI
 
 ///Taken from: https://danielsaidi.com/blog/2022/06/21/undimmed-presentation-detents-in-swiftui
@@ -103,3 +105,4 @@ public enum UndimmedPresentationDetent {
         }
     }
 }
+#endif
